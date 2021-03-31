@@ -1,0 +1,63 @@
+﻿.layout-top {
+    background-color: #F0F1F1;
+}
+
+.layout-top2 {
+    background-color: #ED1941;
+}
+
+body {
+    background-color: #F0F1F1 !important; 
+}
+
+.breadcrumb {
+    background-color: #F0F1F1 !important;
+}
+
+.text-deOnibusGreen {
+    color: #008A5D;
+    font-family: "Muli";
+    font: bold;
+}
+
+.card-DeOnibus {
+    height: 105px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    opacity: 1;
+    margin: 6px;
+}
+
+.card-img-DeOnibus {
+    top: 394px;
+    left: 225px;
+    width: 105px;
+    height: 35px;
+    background: #FF9B00 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+
+.card-fav-DeOinibus {
+    top: 359px;
+    left: 210px;
+    width: 120px;
+    height: 35px;
+    background: #FF9B00 0% 0% no-repeat padding-box;
+    border-radius: 3px 0px 0px 0px;
+    opacity: 1;
+}
+
+.card-company-DeOnibus {
+    top: 544px;
+    left: 225px;
+    width: 105px;
+    height: 25px;
+    text-align: left;
+    font: normal normal bold 9px/11px Muli;
+    letter-spacing: 0px;
+    color: #363636;
+    opacity: 1;
+}
+
+.btn-primary {
+    background-color: #008A5D !important
+}

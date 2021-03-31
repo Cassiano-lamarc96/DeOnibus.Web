@@ -1,0 +1,82 @@
+﻿@model List<DeOnibus.Models.ServicoViagem>
+@{
+    ViewBag.Title = "deônibus";
+}
+
+<div class="breadcrumb">
+    Pagina atual
+</div>
+<hr style="border: 2px solid #008A5D;" />
+<div class="text-center">
+    <label id="trajeto" class="text-deOnibusGreen" style="font-size: 20px; margin-bottom:0px;">IDA</label>
+    <br />
+    <label style="font-size: 12px;">@DateTime.Now.ToLongDateString()</label>
+</div>
+@foreach (var viagem in Model)
+{
+    <div class="row card-DeOnibus">
+        <div class="col-xs-12 col-sm-3">
+
+        </div>
+        <div class="col-xs-12 col-sm-2">
+            <div class="row">
+                <label style="font-family: Muli; font-size: 16px; font: bold;">@viagem.DepartureDate.iso.ToShortTimeString()</label>
+                <hr style="width: 66px; height: 0px; border: 1px solid #808080;" />
+                <label style="font-family: Muli; font-size: 16px; color: #808080">@viagem.ArrivalDate.iso.ToShortTimeString()</label>
+            </div>
+            <div class="row">
+                <label style="text-align: left; font: normal normal bold 12px/20px Muli; letter-spacing: 0px; color: #363636; opacity: 1;"><small style="font: normal normal bold 12px/22px Muli; letter-spacing: 0px; color: #808080; opacity: 1;">de </small>@viagem.Origin</label>
+                <br />
+                <label style="text-align: left; font: normal normal bold 12px/20px Muli; letter-spacing: 0px; color: #363636; opacity: 1;"><small style="font: normal normal bold 12px/22px Muli; letter-spacing: 0px; color: #808080; opacity: 1;">para </small>@viagem.Destination</label>
+            </div>
+            <div class="row">
+                <label style="text-align: left; font: normal normal 600 10px/13px Muli; letter-spacing: 0px; color: #24559E; opacity: 1;">@viagem.BusClass</label>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-4">
+
+        </div>
+        <div class="col-xs-12 col-sm-3">
+            <div class="row">
+                <label style="text-align: right; font: normal normal bold 16px/20px Muli; letter-spacing: 0px; color: #008A5D; opacity: 1;"><small>R$</small> @viagem.Price.ToString("c")</label>
+             </div>
+            <div class="row text-right">
+                <label style="font: normal normal bold 9px/11px Muli; letter-spacing: 0px; color: #808080; opacity: 1;">+ taxas</label>
+            </div>
+            <div class="row">
+                <a class="btn btn-primary" href="#" onclick="perguntaConfirmaCompraPassagem('@viagem.objectId');">Comprar</a>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function perguntaConfirmaCompraPassagem(objectId) {
+        Swal.fire({
+            title: 'Confirma a compra?',
+            showDenyButton: true,
+            confirmButtonText: 'Sim',
+            denyButtonText: 'Não',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                compraPassagem(objectId);   
+            }
+        })
+    }
+
+    function compraPassagem(objectId) {
+        $.ajax({
+            url: '@Url.Content("Viagens/comprarPassagem")',
+            type: 'post',
+            data: {
+                id: objectId
+            },
+            success: function () {
+                swal('Sucesso', 'Compra realizada com sucesso!', 'success');
+            },
+            erro: function (request, status, error) {
+                swal('Erro', 'Erro ao comprar', 'error');
+            }
+        });
+    }
+</script>
